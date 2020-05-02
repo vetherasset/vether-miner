@@ -7,21 +7,21 @@
 * You can deploy this app without touching any code. See guide below. 
 
 ### Config Variables
-This is your local `dotenv` file, or add to Heroku via **config vars** that you manually enter. 
+This is your local `dotenv` file, or add these variables to Heroku via **config vars** that you manually enter. 
 
 ```bash
 PAYER_KEY = <!!!MAINNET-ETH-PRIVATEKEY!!!>
-PAYOUT_KEY = <BIP32-Extended-Public-Key-iancoleman.io/bip39/>
-DAY_CAPITAL = 0.0001
+PAYOUT_ADDR = <your-cold-wallet-address>
+DAY_CAPITAL = 1
 DYNO_URL = <your-dyno-url>
 PORT = 3000
 ```
 
-PAYER_KEY: The address which holds funds to send Ether in (hot wallet)
-PAYOUT_KEY: The address which will be the beneficiary of funds (cold wallet)
-DAY_CAPITAL: Maximum capital to spend every day
-DYNO_URL: Needed for `wokeDyno.js` to keep your dyno alive every 25 mins
-PORT: Heroku Port
+* `PAYER_KEY`: The address which holds funds to send Ether (hot wallet)
+* `PAYOUT_ADDR`: The address which will be the beneficiary of funds (cold wallet)
+* `DAY_CAPITAL`: Maximum capital to spend every day
+* `DYNO_URL`: Needed for `wokeDyno.js` to keep your dyno alive every 25 mins
+* `PORT`: Heroku Port
 
 
 ## 1. Deploy to Heroku via forking this Github (no code needed):
@@ -40,7 +40,7 @@ https://www.freecodecamp.org/news/how-to-deploy-a-nodejs-app-to-heroku-from-gith
 
 Follow this guide to deploy to a Heroku app to run continuously:
 
-https://devcenter.heroku.com/articles/getting-started-with-nodejs?singlepage=true
+https://devcenter.heroku.com/articles/getting-started-with-nodejs
 
 Make sure you add the `dotenv` config variables (**Settings** -> **Reveal config vars**)
 
