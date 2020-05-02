@@ -1,0 +1,23 @@
+{
+  "name": "vether-miner",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "bignumber.js": "^9.0.0",
+    "bip39": "^3.0.2",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "dotenv": "^8.2.0",
+    "ethereumjs-wallet": "^0.6.3",
+    "ethers": "^4.0.46",
+    "express": "~4.16.1",
+    "http-errors": "~1.6.3",
+    "morgan": "~1.9.1",
+    "node-fetch": "^2.6.0",
+    "pug": "^2.0.4",
+    "serve-favicon": "^2.5.0"
+  }
+}

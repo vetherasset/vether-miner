@@ -1,0 +1,97 @@
+extends layout
+
+block layout-content
+  div.View
+    h1.Banner VETHER-MINER CLIENT
+    div.Message
+      div.Title
+        h2 STATUS: LIVE
+        p 
+          strong Daily Burn
+          | (ETH) #{dailyBurn}
+        p 
+          strong Cycle count: 
+          | #{cycles} 
+          strong Tx count: 
+          | #{txCount} 
+        p 
+          strong Start Time:
+          | #{times.start} 
+          strong Last Cycle Time:
+          | #{times.cycle} 
+
+        h3 Mining Address
+        p #[a(href=miningLink, target="_blank") #{miningAddress}]
+        h3 Miner ETH Balance
+        span.Details #{ethBalance}
+        br
+        h3 Miner VETH Balance
+        span.Details #{vethBalance}
+        br
+        h3 Payout Address
+        p #[a(href=payoutLink, target="_blank") #{payoutAddress}]
+        br      
+  h3 Transactions
+  table
+    thead
+      tr 
+      th Era
+      th Day 
+      th Amount 
+      th Time 
+      th Hash
+    tbody
+      each tx, i in arrayDays
+        tr
+          td #{tx.era} 
+          td #{tx.day} 
+          td #{tx.amt} 
+          td #{tx.time}
+          td: a(href=tx.link, target="_blank") #{tx.hash}
+  br
+  h3 Daily Claims
+  table
+    thead
+      tr 
+        th Era 
+        th Day  
+        th Vether
+        th Withdrawn
+    tbody
+      each item, i in arrayShares
+        tr 
+          td #{item.era} 
+          td #{item.day} 
+          td #{item.share} 
+          td #{item.withdrawn}
+
+
+      //- h3 Daily Claims
+  //- br
+  //- table
+  //-   thead
+  //-     tr: th Era - Day - Vether - Withdrawn
+  //-   tbody
+  //-     each item, i in arrayShares
+  //-       tr 
+  //-         td 
+  //-           p #{item.era} - #{item.day} - #{item.share} - #{item.withdrawn}
+
+      //- h3 Transactions
+      //- br
+      //- table
+      //-     tr 
+      //-       th Era
+      //-       th Day 
+      //-       th Amount 
+      //-       th Time 
+      //-       th Hash
+      //-   tbody
+      //-     each tx, i in arrayDays
+      //-       tr
+      //-         //- td #{i} 
+      //-         td #{tx.era} 
+      //-         td #{tx.day} 
+      //-         td #{tx.amt} 
+      //-         td #{tx.time} 
+      //-         td: a(href=tx.link, target="_blank") #{tx.hash}
