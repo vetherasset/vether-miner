@@ -65,6 +65,16 @@ yarn start
 View the dashboard by going to this:
 http://localhost:3000
 
+WokeDyno doesn't play nice locally. Change the wokeDyne port to `3001` in `app.js`:
+```javascript
+app.listen(3001, () => {
+  wakeUpDyno(process.env.DYNO_URL); // will start once server starts
+})
+```
+If you run into trouble, you can kill it:
 ```
 sudo lsof -i:3000
 ```
+
+Make sure you change back to `3000` before deploying to Heroku.
+
