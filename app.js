@@ -16,7 +16,7 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-app.listen(3001, () => {
+app.listen(3000, () => {
   wakeUpDyno(process.env.DYNO_URL); // will start once server starts
 })
 
