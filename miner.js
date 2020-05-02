@@ -120,6 +120,7 @@ async function checkEra(i) {
 async function checkDay(i, j) {
 	console.log("Checking currentEra %s, Index %s, currentDay %s", i, j, currentDay)
 	if (i < currentEra || (i == currentEra && j < currentDay-1)) {
+		console.log(payoutAddress, i, j)
 		let day = (new BigNumber(await contract.mapMemberEra_Days(payoutAddress, i, j))).toFixed()
 		console.log('Day at index %s is: %s', j, day)
 		console.log(i, +day, payoutAddress)
