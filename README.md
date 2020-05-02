@@ -1,4 +1,6 @@
-# vether-miner-app
+# Vether Mining Client
+
+![vether-miner-ui](https://github.com/vetherasset/vether-miner/blob/master/git/vether-miner-ui.png)
 
 * Run this mining client to continuously mine the contract and earn Vether by burning Ether. 
 * You can enter your own config variables and deploy via your own heroku app. 
@@ -7,7 +9,7 @@
 ### Config Variables
 This is your local `dotenv` file, or add to Heroku via **config vars** that you manually enter. 
 
-```
+```bash
 PAYER_KEY = <!!!MAINNET-ETH-PRIVATEKEY!!!>
 PAYOUT_KEY = <BIP32-Extended-Public-Key-iancoleman.io/bip39/>
 DAY_CAPITAL = 0.0001
