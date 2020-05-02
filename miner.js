@@ -5,12 +5,12 @@ var vether = require('./vether.js')
 var hdkey = require('ethereumjs-wallet/hdkey')
 var bip39 = require('bip39')
 
-const timeDelay = 9*60*1000;
+const timeDelay = 1*60*1000;
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 var provider; var signingKey;
 var minerAddress; var payoutAddress; var wallet; var contract; var vethBalance; var ethBalance;
-var currentEra; var currentDay; var NextDayTime;
+var currentEra; var currentDay; var nextDayTime;
 let arrayDays = []; let arrayShares = []; let arrayTx = [];
 var cycles; var txCount;
 var times = { 'start': "", 'cycle': "", 'query':"" };
@@ -44,8 +44,8 @@ const sendEth = async (amt) => {
 		gasLimit: 250000,
 		value: amount
 	};
-	let length = arrayDays.length
-	if (arrayDays.length == 0) {
+	let length = arrayDays.length	
+	if (length == 0) {
 		await sendTx(tx)
 	} else {
 		let latest = arrayDays[length - 1]
@@ -55,8 +55,9 @@ const sendEth = async (amt) => {
 			if (latest.day < currentDay) {
 				await sendTx(tx)
 			} else {
-				const now = Date.now()/1000
-				if ( now >= NextDayTime) {
+				const now_ = Date.now()/1000
+				console.log(now_, nextDayTime)
+				if ( now_ >= nextDayTime) {
 					await sendTx(tx)
 				}
 			}
