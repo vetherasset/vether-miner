@@ -5,7 +5,7 @@ var vether = require('./vether.js')
 var hdkey = require('ethereumjs-wallet/hdkey')
 var bip39 = require('bip39')
 
-const timeDelay = 1*60*1000;
+const timeDelay = 9*60*1000;
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 var provider; var signingKey;
@@ -46,13 +46,16 @@ const sendEth = async (amt) => {
 	};
 	let length = arrayDays.length	
 	if (length == 0) {
+		console.log(arrayDays.length)
 		await sendTx(tx)
 	} else {
 		let latest = arrayDays[length - 1]
 		if (latest.era < currentEra) {
+			console.log(latest.era, currentEra)
 			await sendTx(tx)
 		} else {
 			if (latest.day < currentDay) {
+				console.log(latest.day, currentDay)
 				await sendTx(tx)
 			} else {
 				const now_ = Date.now()/1000
@@ -113,13 +116,13 @@ async function checkEra(i) {
 	console.log('Check currentEra: %s, currentDays contributed: %s', i, indexContributed)
 	for (var j = 1; j <= indexContributed; j++) {
 		console.log('checking index:%s', j-1)
-		await checkDay(i, j-1)
+		await checkDay(i, j-1, indexContributed)
 	}
 }
 
-async function checkDay(i, j) {
+async function checkDay(i, j, length) {
 	console.log("Checking currentEra %s, Index %s, currentDay %s", i, j, currentDay)
-	if (i < currentEra || (i == currentEra && j < currentDay-1)) {
+	if (i < currentEra || (i == currentEra && j < length)) {
 		console.log(payoutAddress, i, j)
 		let day = (new BigNumber(await contract.mapMemberEra_Days(payoutAddress, i, j))).toFixed()
 		console.log('Day at index %s is: %s', j, day)
