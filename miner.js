@@ -19,11 +19,11 @@ const updateDetails = async () => {
 	const cycleTime = new Date(Date.now()).toLocaleTimeString("en-gb")
 	console.log('updating details at time:', cycleTime)
 	times = { 'start': times.start, 'cycle': cycleTime, 'query': times.query  }
-	provider = ethers.getDefaultProvider('rinkeby');
+	provider = ethers.getDefaultProvider();
 	signingKey = new ethers.utils.SigningKey(process.env.PAYER_KEY);
 	minerAddress = signingKey.address
 	//payoutAddress = process.env.PAYOUT_ADDR
-	//console.log('Address: ' + signingKey.address);
+	console.log('Address: ' + signingKey.address);
 	wallet = new ethers.Wallet(process.env.PAYER_KEY, provider);
     contract = new ethers.Contract(vether.addr(), vether.abi(), wallet)
     vethBalance = ethers.utils.formatEther(await contract.balanceOf(payoutAddress))
@@ -76,7 +76,7 @@ async function sendTx(tx) {
 	let resp = await contract.burnEtherForMember(payoutAddress, tx);
 	//const resp = await wallet.sendTransaction(tx);
 	time = new Date(Date.now()).toLocaleString("en-gb")
-	var etherscan="https://rinkeby.etherscan.io/tx/"
+	var etherscan="https://etherscan.io/tx/"
 	console.log('tx sent', currentEra, currentDay, ethers.utils.formatEther(tx.value), resp.hash, time)
 	arrayDays.push({ 'era': currentEra, 'day': currentDay, 'amt': ethers.utils.formatEther(tx.value), 'hash': resp.hash, 'time': time, 'link': etherscan.concat(resp.hash) })
 }
@@ -198,7 +198,7 @@ const getMiningAddress = function () {
 }
 
 const getMiningLink = function () {
-    var etherscan="https://rinkeby.etherscan.io/address/"
+    var etherscan="https://etherscan.io/address/"
     var link = etherscan.concat(getMiningAddress())
     return link
 }
@@ -208,7 +208,7 @@ const getPayoutAddress = function () {
 }
 
 const getPayoutLink = function () {
-    var etherscan="https://rinkeby.etherscan.io/address/"
+    var etherscan="https://etherscan.io/address/"
     var link = etherscan.concat(getPayoutAddress())
     return link
 }
