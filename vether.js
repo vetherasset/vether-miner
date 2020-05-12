@@ -1,7 +1,7 @@
 const VETHER = require('./DeployedVether.json')
 
 const addr = () => {
-	return '0xd447B74e5Ff9fAF98eB66dC59DC2C91DD47736dC'
+	return '0x31Bb711de2e457066c6281f231fb473FC5c2afd3'
 }
 
 const abi = () => {
