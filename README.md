@@ -18,6 +18,7 @@ PORT = 3000
 ```
 
 * `PAYER_KEY`: The address which holds funds to send Ether (hot wallet) (recommend funding with [Tornado.Cash](https://tornado.cash))
+* `PAYER_XPUB` <OPTIONAL> BIP39 XPub to allow random sending of funds to other addresses. 
 * `PAYOUT_ADDR`: The address which will be the beneficiary of funds (cold wallet)
 * `DAY_CAPITAL`: Maximum capital to spend every day
 * `DYNO_URL`: Needed for `wokeDyno.js` to keep your dyno alive every 25 mins
