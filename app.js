@@ -5,8 +5,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var favicon = require('serve-favicon');
+var dyno = (process.env.DYNO === 'true');
 
-const wakeUpDyno = require("./wokeDyno.js");
+const wakeUpDyno = require('./wokeDyno.js');
 
 var miner = require('./miner.js')
 miner.main()
@@ -16,9 +17,11 @@ var usersRouter = require('./routes/users');
 
 var app = express();
 
-app.listen(3000, () => {
-  wakeUpDyno(process.env.DYNO_URL); // will start once server starts
-})
+if(dyno) {
+  app.listen(3000, () => {
+    wakeUpDyno(process.env.DYNO_URL); // will start once server starts
+  })
+}
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
