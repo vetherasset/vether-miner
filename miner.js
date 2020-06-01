@@ -5,7 +5,7 @@ var vether = require('./vether.js')
 var hdkey = require('ethereumjs-wallet/hdkey')
 var bip39 = require('bip39')
 
-const timeDelay = 1*60*1000;
+const timeDelay = 15*60*1000;
 const delay = ms => new Promise(res => setTimeout(res, ms));
 
 var provider; var signingKey;
