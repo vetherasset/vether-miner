@@ -14,21 +14,23 @@ PAYER_KEY = <!!!MAINNET-ETH-PRIVATEKEY!!!>
 PAYOUT_ADDR = <your-cold-wallet-address>
 DAY_CAPITAL = 1
 DYNO_URL = <your-dyno-url>
+DYNO = <true-or-false>
 PORT = 3000
 ```
 
 * `PAYER_KEY`: The address which holds funds to send Ether (hot wallet) (recommend funding with [Tornado.Cash](https://tornado.cash))
 * `PAYER_XPUB` <OPTIONAL> BIP39 XPub to allow random sending of funds to other addresses. 
-* `PAYOUT_ADDR`: The address which will be the beneficiary of funds (cold wallet)
+* `PAYOUT_ADDR`: The address which will be the beneficiary of funds (cold wallet).
 * `DAY_CAPITAL`: Maximum capital to spend every day
-* `DYNO_URL`: Needed for `wokeDyno.js` to keep your dyno alive every 25 mins
+* `DYNO_URL`: Needed for `wokeDyno.js` to keep your dyno alive every 25 mins.
+* `DYNO`: Specifies if should  use `wokeDyno.js`.
 * `PORT`: Heroku Port
 
 
 ## 1. Deploy to Heroku via forking this Github (no code needed):
 
 1. Fork this repo
-2. Go to Heroku and **Create New App** -> **Connect to Github** option
+2. Go to Heroku and Create New App** -> **Connect to Github** option
 3. Select this repo after searching
 4. Go to **Settings** -> **Reveal config vars**
 5. Add all the `dotenv` config variables individually
@@ -54,11 +56,16 @@ yarn
 ```
 
 **Configuration (DotEnv)**
-Add your private key and config details to the `dotenv` file:
+In the `dotenv` file add following:
+
+1. Add your **private key** and **payout address**.
+2. Set **DYNO** to **false**.
+3. Set **DAY_CAPITAL** to your desired amount you want burn every day.
 
 Rename it to `.env`
 
 **Start**
+
 You can run on local:
 ```
 yarn start
@@ -66,7 +73,7 @@ yarn start
 View the dashboard by going to this:
 http://localhost:3000
 
-WokeDyno doesn't play nice locally. Change the wokeDyne port to `3001` in `app.js`:
+If you decide to use WokeDyno, it may not play nice locally. Change the wokeDyne port to `3001` in `app.js`:
 ```javascript
 app.listen(3001, () => {
   wakeUpDyno(process.env.DYNO_URL); // will start once server starts
@@ -74,7 +81,7 @@ app.listen(3001, () => {
 ```
 If you run into trouble, you can kill it:
 ```
-sudo lsof -i:3000
+sudo lsof -i:3001
 ```
 
 Make sure you change back to `3000` before deploying to Heroku.
